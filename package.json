@@ -1,0 +1,17 @@
+{
+  "name": "language-oxpath",
+  "version": "0.0.1",
+  "description": "OXPath language support in Atom",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neumannm/language-oxpath.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neumannm/language-oxpath/issues"
+  },
+  "license": "GNU GPL 3.0"
+}
