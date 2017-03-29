@@ -53,8 +53,14 @@
       #'disabled': '1'
       'comment' : 'user action'
       'begin': '/\\{'
+      'beginCaptures':
+        '0':
+          'name': 'punctuation.definition.action.begin.xml'
       'end': '/?\\}'
-      'name': 'punctuation.definition.tag.oxpath'
+      'endCaptures':
+        '0':
+          'name': 'punctuation.definition.action.end.xml'
+      'name': 'useraction.oxpath'
       'patterns':[
         {
           'include' : '#actions'
@@ -98,8 +104,36 @@
 'repository':
     'actions':
       'comment': 'user actions'
-      'match': 'click' #TODO just an example, add more
       'name': 'entity.name.tag.oxpath'
+      'patterns': [
+        {
+          'include': '#integer'
+        }
+        {
+          'include': '#actionKeyword'
+        }
+        {
+          'include': '#actionVariable'
+        }
+        {
+          'include': '#string'
+        }
+      ]
+    'actionVariable':
+      'comment': 'OXPath action variable'
+      'name': 'entity.name.tag.oxpath'
+      'match': '\\$(.+)\\b'
+      'captures':
+        '1':
+          'patterns':[
+            {
+              'include': '#NCName'
+            }
+          ]
+    'actionKeyword':
+      'comment': 'OXPath user action keyword'
+      'name': 'entity.name.tag.oxpath'
+      'match': '\\b(focus|click|clkwithchange|pressenter|enterframe|movetoframe|movetohref|dblclick|mousedown|mouseenter|mousemove|mouseover|mouseout|mouseup|wheel|submit|check|uncheck)\\b'
     'url':
       'comment': 'see grammar rule URLName in OXPath - should match any valid URL including port number, paths and POST parameters'
       'match': '((http(s)?)://)(.+?)(:[0-9]+)(/(.+?))?(\\?(.+?))?'
