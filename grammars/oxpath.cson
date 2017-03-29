@@ -44,9 +44,6 @@
             ]
     }
     {
-      'include' : '#number'
-    }
-    {
       'include' : '#string'
     }
     {
