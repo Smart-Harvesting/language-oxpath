@@ -69,12 +69,14 @@
     }
     {
       #'disabled': '1'
+      #TODO fix
       'comment' : 'attributes'
       'matches' : '(\\[)(@)([-_a-zA-Z]+)=.+(\\])'
       'name': 'support.constant.oxpath'
     }
     {
       'disabled': '1'
+      #TODO fix
       'comment': 'predicates'
       'begin': '\\['
       'end': '\\]'
