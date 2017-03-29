@@ -62,6 +62,9 @@
         {
           'include' : '#actions'
         }
+        {
+          'include': '#actionPred'
+        }
       ]
     }
     {
@@ -204,13 +207,21 @@
       'match': '[0-9]+'
       'name': 'constant.numeric.integer.oxpath'
     'actionPred':
-        'match': '\\[((wait=[0-9]+)|(noback))(,((wait=[0-9]+)|(noback)))*\\]'
+        'match': '\\[(((wait)(=)(.+))|(noback))(,(\\1))*\\]'
         'name': 'storage.type.function.oxpath'
-        'patterns': [
-          {
-            'include': '#numbers'
-          }
-        ]
+        'captures':
+          '3':
+            'storage.type.function.oxpath'
+          '4':
+            'punctuation.oxpath'
+          '5':
+            'patterns': [
+              {
+                'include': '#number'
+              }
+            ]
+          '6':
+            'storage.type.function.oxpath'
     'OXPathExtractionValue':
       'comment': 'value of an OXPath extraction expression'
       'patterns':[
