@@ -55,12 +55,12 @@
       'begin': '/\\{'
       'beginCaptures':
         '0':
-          'name': 'punctuation.definition.action.begin.xml'
+          'name': 'punctuation.definition.action.begin.oxpath'
       'end': '/?\\}'
       'endCaptures':
         '0':
-          'name': 'punctuation.definition.action.end.xml'
-      'name': 'useraction.oxpath'
+          'name': 'punctuation.definition.action.end.oxpath'
+      'name': 'punctuation.definition.action.oxpath'
       'patterns':[
         {
           'include' : '#actions'
