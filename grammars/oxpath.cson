@@ -90,17 +90,27 @@
     {
       #'disabled': '1'
       'comment': 'extraction marker'
-      'begin': ':<'
-      'end': '>'
-      'name': 'punctuation.definition.tag.oxpath'
-      'patterns':[
-        {
-          'include': '#OXPathExtractionName'
-        }
-        {
-          'include': '#OXPathExtractionValue'
-        }
-      ]
+      'match': '(:<)(.+?)((=)(.+))?(>)'
+      'captures':
+        '1':
+          'name': 'punctuation.definition.extraction.begin.oxpath'
+        '2':
+          'patterns':[
+            {
+              'include': '#OXPathExtractionName'
+            }
+          ]
+        '4':
+          'name': 'punctuation.oxpath'
+        '5':
+          'patterns':[
+            {
+              'include': '#OXPathExtractionValue'
+            }
+          ]
+        '6':
+          'name': 'punctuation.definition.extraction.end.oxpath'
+      'name': 'punctuation.definition.extraction.oxpath'
     }
 ]
 'repository':
@@ -205,7 +215,51 @@
           }
         ]
     'OXPathExtractionValue':
-      'comment': '' #TODO define
+      'comment': 'value of an OXPath extraction expression'
+      'patterns':[
+        {
+          'include': '#functionCall'
+        }
+        {
+          'include': '#parenExpression'
+        }
+        {
+          'include': '#string'
+        }
+        {
+          'include': '#number'
+        }
+      ]
+    'parenExpression':
+      'comment': 'expression in parantheses'
+      'begin': '\\('
+      'end': '\\)'
+      'name': 'oxpath'
+      'patterns':[
+        {
+          'include' : '$self'
+        }
+      ]
+    'functionCall':
+      'comment': 'XPath function calls or user function calls - see grammar rules XPathFunctionCallName and XPathUserFunctionCallName'
+      'begin': '\\b(position|last|count|id|local-name|namespace-uri|name|string|concat|starts-with|contains|substring-before|substring-after|string-length|normalize-space|translate|boolean|not|true|false|lang|number|sum|floor|ceiling|round|opex:minus|opex:plus|substring-before-reverse|substring-after-reverse|substring-reverse|replace|string-join|current-url|page-content|screenshot|save-page|now|urify|jaro-wrinkler|qualify-url|dom-property|select-text|innerhtml|outerhtml|to-xml|is-visible|is-invisible)(?:\\s|\\t|\\n)*(\\()'
+      'beginCaptures':
+        '1':
+          'name': 'support.function.oxpath'
+        '2':
+          'name': 'punctuation.definition.parameters.begin.oxpath'
+      'end': '(\\))'
+      'endCaptures':
+        '1':
+          'name': 'punctuation.definition.parameters.end.oxpath'
+      'patterns':[
+        {
+          'include': '#functionCall'
+        }
+        {
+          'include': '$self'
+        }
+      ]
     'NCName':
       'match': '([A-Za-z_])([A-Za-z_]|\\-|[0-9])*'
       'name': 'entity.other.nc-name.oxpath'
