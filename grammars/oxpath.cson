@@ -305,7 +305,7 @@
       'match': '\\b[0-9]+\\b'
       'name': 'constant.numeric.integer.oxpath'
     'actionPred':
-        'match': '\\[(((wait)(=)(.+))|(noback))(,(\\1))*\\]'
+        'match': '\\[(((wait)(=)(.+?))|(noback))(,(\\1))*\\]'
         'name': 'storage.type.function.oxpath'
         'captures':
           '3':
