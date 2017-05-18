@@ -109,6 +109,9 @@
       #'name': 'storage.modifier.oxpath'
       'patterns': [
         {
+          'include': '#number'
+        }
+        {
           'include': '$self'
         }
       ]
@@ -295,11 +298,11 @@
       ]
     'decimal':
       'comment': 'decimal numbers'
-      'match': '([0-9]+\\.([0-9]+)?)|(\\.[0-9]+)'
+      'match': '\\b([0-9]+\\.([0-9]+)?)|(\\.[0-9]+)\\b'
       'name': 'constant.numeric.decimal.oxpath'
     'integer':
       'comment': 'integer numbers'
-      'match': '[0-9]+'
+      'match': '\\b[0-9]+\\b'
       'name': 'constant.numeric.integer.oxpath'
     'actionPred':
         'match': '\\[(((wait)(=)(.+))|(noback))(,(\\1))*\\]'
