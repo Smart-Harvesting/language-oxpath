@@ -243,7 +243,7 @@
     'actionKeyword':
       'comment': 'OXPath user action keyword'
       'name': 'entity.name.tag.oxpath'
-      'match': '\\b(focus|click|clkwithchange|pressenter|enterframe|movetoframe|movetohref|dblclick|mousedown|mouseenter|mousemove|mouseover|mouseout|mouseup|wheel|submit|check|uncheck)\\b'
+      'match': '\\b(focus|click|nextclick|clkwithchange|pressenter|enterframe|movetoframe|movetohref|dblclick|mousedown|mouseenter|mousemove|mouseover|mouseout|mouseup|wheel|submit|check|uncheck)\\b'
     'url':
       'comment': 'see grammar rule URLName in OXPath - should match any valid URL including port number, paths and POST parameters'
       'match': '((http(s)?)://)(.+?)(:[0-9]+)(/(.+?))?(\\?(.+?))?'
