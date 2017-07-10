@@ -162,9 +162,9 @@
     }
 ]
 'repository':
-    'AbbreviatedStep':
-      'match': '(\\.\\.)|(\\.)'
-      'name': 'punctuation.parentorself.oxpath'
+    #'AbbreviatedStep':
+      #'match': '(\\.\\.)|(\\.)'
+    #  'name': 'punctuation.parentorself.oxpath'
     'XPathForwardAxisName':
       'match': '\\b(attribute|child|descendant-or-self|descendant|following-sibling|following|namespace|self)(?:\\s|\\t|\\n)*(::)'
       'name': 'support.function.axis.oxpath' #TODO
