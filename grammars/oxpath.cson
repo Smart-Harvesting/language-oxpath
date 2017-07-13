@@ -162,9 +162,6 @@
     }
 ]
 'repository':
-  #'AbbreviatedStep':
-    #'match': '(\\.\\.)|(\\.)'
-    #'name': 'punctuation.parentorself.oxpath'
   'XPathForwardAxisName':
     'match': '''(?x)
         \\b                             # word delimiter
