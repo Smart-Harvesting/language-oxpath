@@ -162,292 +162,332 @@
     }
 ]
 'repository':
-    #'AbbreviatedStep':
-      #'match': '(\\.\\.)|(\\.)'
-    #  'name': 'punctuation.parentorself.oxpath'
-    'XPathForwardAxisName':
-      'match': '\\b(attribute|child|descendant-or-self|descendant|following-sibling|following|namespace|self)(?:\\s|\\t|\\n)*(::)'
-      'name': 'support.function.axis.oxpath' #TODO
-    'XPathBackwardAxisName':
-      'match': '\\b(ancestor-or-self|ancestor|parent|preceding-sibling|preceding)(?:\\s|\\t|\\n)*(::)'
-      'name': 'support.function.axis.oxpath' #TODO
-    'OXPathAxisSpecifier':
-      'match': '\\b(style)(?:\\s|\\t|\\n)*(::)'
-      'name': 'support.function.axis.oxpath' #TODO
-    'XPathNodeTest':
-      'match': '(\\b(comment|text|processing-instruction|node)(\\(\\)))|(.+)'
-      'captures':
-        '2':
-          'name': 'support.function.xpath.oxpath'
-        '4':
-          'patterns':[
-            {
-              'include': '#XPathNameTest'
-            }
-          ]
-    'XPathNameTest':
-      'match' : '((\\*)|(.+))(:((\\*)|(.+)))?'
-      'captures':
-        '2':
-          'patterns':[
-            {
-              'include': '#asterisk'
-            }
-          ]
-        '3':
-          'patterns':[
-            {
-              'include': '#NCName'
-            }
-          ]
-        '6':
-          'patterns':[
-            {
-              'include': '#asterisk'
-            }
-          ]
-        '7':
-          'patterns':[
-            {
-              'include': '#NCName'
-            }
-          ]
-    'actions':
-      'comment': 'user actions'
-      'name': 'entity.name.tag.oxpath'
-      'patterns': [
-        {
-          'include': '#integer'
-        }
-        {
-          'include': '#actionKeyword'
-        }
-        {
-          'include': '#actionVariable'
-        }
-        {
-          'include': '#string'
-        }
-      ]
-    'actionVariable':
-      'comment': 'OXPath action variable'
-      'name': 'entity.name.tag.oxpath'
-      'match': '\\$(.+)\\b'
-      'captures':
-        '1':
-          'patterns':[
-            {
-              'include': '#NCName'
-            }
-          ]
-    'actionKeyword':
-      'comment': 'OXPath user action keyword'
-      'name': 'entity.name.tag.oxpath'
-      'match': '\\b(focus|click|nextclick|clkwithchange|pressenter|enterframe|movetoframe|movetohref|dblclick|mousedown|mouseenter|mousemove|mouseover|mouseout|mouseup|wheel|submit|check|uncheck)\\b'
-    'url':
-      'comment': 'see grammar rule URLName in OXPath - should match any valid URL including port number, paths and POST parameters'
-      'match': '((http(s)?)://)(.+?)(:[0-9]+)(/(.+?))?(\\?(.+?))?'
-      'name': 'entity.name.other.url.oxpath'
-      'captures':
-        '4':
-          'patterns':[
-            {
-              'include': '#urlname'
-            }
-          ]
-        '7':
-          'patterns':[
-            {
-              'include': '#urlstring'
-            }
-          ]
-        '9':
-          'patterns':[
-            {
-              'include': '#urlstring'
-            }
-          ]
-    'urlname':
-      'comment': 'an URL can be a (valid) URL string or an IP address'
-      'patterns': [
-        {
-          'include': '#urlstring'
-        }
-        {
-          'include': 'ipadress'
-        }
-      ]
-    'urlstring':
-      'comment': 'see grammar rule URLName in OXPath'
-      'match': '[a-zA-Z][a-zA-Z0-9$\\-_@\\.&\\+=!\\*"\'\\(\\),%]*'
-      'name' : 'entity.name.other.url.oxpath'
-    'ipadress':
-      'comment': 'see grammar rule URLName in OXPath'
-      'match': '([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})'
-      'name' : 'constant.numeric.ip.oxpath'
-    'number':
-      'comment' : 'integers and decimals'
-      'name': 'constant.numeric.oxpath'
-      'patterns': [
-        {
-          'include': '#decimal'
-        }
-        {
-          'include': '#integer'
-        }
-      ]
-    'decimal':
-      'comment': 'decimal numbers'
-      'match': '\\b([0-9]+\\.([0-9]+)?)|(\\.[0-9]+)\\b'
-      'name': 'constant.numeric.decimal.oxpath'
-    'integer':
-      'comment': 'integer numbers'
-      'match': '\\b[0-9]+\\b'
-      'name': 'constant.numeric.integer.oxpath'
-    'actionPred':
-        'match': '\\[(((wait)(=)(.+?))|(noback))(,(\\1))*\\]'
-        'name': 'storage.type.function.oxpath'
-        'captures':
-          '3':
-            'storage.type.function.oxpath'
-          '4':
-            'punctuation.oxpath'
-          '5':
-            'patterns': [
-              {
-                'include': '#number'
-              }
-            ]
-          '6':
-            'storage.type.function.oxpath'
-    'XPathFunctionCall':
-      'comment': 'XPath function calls or user function calls - see grammar rules XPathFunctionCallName and XPathUserFunctionCallName'
-      'begin': '(position|last|count|id|local-name|namespace-uri|name|string|concat|starts-with|contains|substring-before|substring-after|string-length|normalize-space|translate|boolean|not|true|false|lang|number|sum|floor|ceiling|round|opex:minus|opex:plus|substring-before-reverse|substring-after-reverse|substring-reverse|replace|string-join|current-url|page-content|screenshot|save-page|now|urify|jaro-wrinkler|qualify-url|dom-property|select-text|innerhtml|outerhtml|to-xml|is-visible|is-invisible)(?:\\s|\\t|\\n)*(\\()'
-      'beginCaptures':
-        '1':
-          'name': 'entity.name.function.oxpath'
-        '2':
-          'name': 'punctuation.definition.parameters.begin.oxpath'
-      'end': '(\\))'
-      'endCaptures':
-        '1':
-          'name': 'punctuation.definition.parameters.end.oxpath'
-      'patterns':[
-        {
-          'include': '#XPathFunctionCall'
-        }
-        {
-          'include': '$self'
-        }
-      ]
-    'OXPathExtractionName':
-      'comment': 'name of an extraction marker'
-      'match': '([^>]+)(:[^>]+)?'
-      'name': 'constant.character.oxpath'
-      'captures':
-        '1':
-          'patterns':[
-            {
-              'include': '#NCName'
-            }
-          ]
-        '3':
-          'patterns':[
-            {
-              'include': '#NCName'
-            }
-          ]
-    'OXPathExtractionValue':
-      'comment': 'value of an OXPath extraction expression'
-      'name': 'entity.other.extraction.value.oxpath'
-      'patterns':[
-        {
-          'include': '#string'
-        }
-        {
-          'include': '#number'
-        }
-        {
-          'include': '#XPathFunctionCall'
-        }
-        {
-          'begin': '\\('
-          'end': '\\)'
-          'patterns': [
-            {
-              'include': '#XPathExpr'
-            }
-          ]
-        }
-      ]
-    'NCName':
-      'match': '([A-Za-z_])([A-Za-z_]|\\-|[0-9])*'
-      'name': 'entity.other.nc-name.oxpath'
-    'doublequotedString':
-      'begin': '"'
-      'beginCaptures':
-        '0':
-          'name': 'punctuation.definition.string.begin.oxpath'
-      'end': '"'
-      'endCaptures':
-        '0':
-          'name': 'punctuation.definition.string.end.oxpath'
-      'name': 'string.quoted.double.oxpath'
-    'singlequotedString':
-      'begin': '\''
-      'beginCaptures':
-        '0':
-          'name': 'punctuation.definition.string.begin.oxpath'
-      'end': '\''
-      'endCaptures':
-        '0':
-          'name': 'punctuation.definition.string.end.oxpath'
-      'name': 'string.quoted.single.xquery'
-    'string':
-      'patterns': [
-        {
-          'include': '#doublequotedString'
-        }
-        {
-          'include': '#singlequotedString'
-        }
-      ]
-    'at':
-      'match': '@'
-      'name': 'constant.oxpath'
-    'questionMark':
-      'match': '\\?'
-      'name': 'constant.oxpath'
-    'doubleslash':
-      'match': '\\/\\/'
-      'name': 'constant.oxpath'
-    'slash':
-      'match': '\\/'
-      'name': 'constant.oxpath'
-    'asterisk':
-      'match': '\\*'
-      'name': 'constant.oxpath'
-    'and':
-      'match': '\\b(and)\\b'
-      'name': 'constant.oxpath'
-    'or':
-      'match': '\\b(or)\\b'
-      'name': 'constant.oxpath'
-    'equality':
-      'match': '(=|!=|~=|#=)'
-      'name': 'constant.oxpath'
-    'relation':
-      'match': '(>|<|>=|<=)'
-      'name': 'constant.oxpath'
-    'plus':
-      'match': '(\\+)'
-      'name': 'constant.oxpath'
-    'minus':
-      'match': '(-)'
-      'name': 'constant.oxpath'
-    'mult':
-      'match': '(\\*|mod|div)'
-      'name': 'constant.oxpath'
-    'bar':
-      'match': '(\\|)'
-      'name': 'constant.oxpath'
+  #'AbbreviatedStep':
+    #'match': '(\\.\\.)|(\\.)'
+    #'name': 'punctuation.parentorself.oxpath'
+  'XPathForwardAxisName':
+    'match': '''(?x)
+        \\b                             # word delimiter
+        (attribute|child|descendant-or-self|descendant|following-sibling|
+        following|namespace|self)       # axis identifiers
+        (?:\\s|\\t|\\n)*                # optional amount of whitespace
+        (::)                            # double colon
+      '''
+    'name': 'support.function.axis.oxpath' #TODO
+  'XPathBackwardAxisName':
+    'match': '''(?x)
+        \\b                             # word delimiter
+        (ancestor-or-self|ancestor|parent|
+        preceding-sibling|preceding)    # axis identifiers
+        (?:\\s|\\t|\\n)*                # optional amount of whitespace
+        (::)                            # double colon
+      '''
+    'name': 'support.function.axis.oxpath' #TODO
+  'OXPathAxisSpecifier':
+    'match': '\\b(style)(?:\\s|\\t|\\n)*(::)'
+    'name': 'support.function.axis.oxpath' #TODO
+  'XPathNodeTest':
+    'match': '(\\b(comment|text|processing-instruction|node)(\\(\\)))|(.+)'
+    'captures':
+      '2':
+        'name': 'support.function.xpath.oxpath'
+      '4':
+        'patterns':[
+          {
+            'include': '#XPathNameTest'
+          }
+        ]
+  'XPathNameTest':
+    'match' : '((\\*)|(.+))(:((\\*)|(.+)))?'
+    'captures':
+      '2':
+        'patterns':[
+          {
+            'include': '#asterisk'
+          }
+        ]
+      '3':
+        'patterns':[
+          {
+            'include': '#NCName'
+          }
+        ]
+      '6':
+        'patterns':[
+          {
+            'include': '#asterisk'
+          }
+        ]
+      '7':
+        'patterns':[
+          {
+            'include': '#NCName'
+          }
+        ]
+  'actions':
+    'comment': 'user actions'
+    'name': 'entity.name.tag.oxpath'
+    'patterns': [
+      {
+        'include': '#integer'
+      }
+      {
+        'include': '#actionKeyword'
+      }
+      {
+        'include': '#actionVariable'
+      }
+      {
+        'include': '#string'
+      }
+    ]
+  'actionVariable':
+    'comment': 'OXPath action variable'
+    'name': 'entity.name.tag.oxpath'
+    'match': '\\$(.+)\\b'
+    'captures':
+      '1':
+        'patterns':[
+          {
+            'include': '#NCName'
+          }
+        ]
+  'actionKeyword':
+    'comment': 'OXPath user action keyword'
+    'name': 'entity.name.tag.oxpath'
+    'match': '''(?x)
+      \\b                               # word delimiter
+      (focus|click|nextclick|clkwithchange|pressenter|enterframe
+      |movetoframe|movetohref|dblclick|mousedown|mouseenter|mousemove
+      |mouseover|mouseout|mouseup|wheel|submit|check
+      |uncheck)                         # action keywords
+      \\b                               # word delimiter
+      '''
+  'url':
+    'comment': '''
+        see grammar rule URLName in OXPath - should match any valid URL
+        including port number, paths and POST parameters
+      '''
+    'match': '((http(s)?)://)(.+?)(:[0-9]+)(/(.+?))?(\\?(.+?))?'
+    'name': 'entity.name.other.url.oxpath'
+    'captures':
+      '4':
+        'patterns':[
+          {
+            'include': '#urlname'
+          }
+        ]
+      '7':
+        'patterns':[
+          {
+            'include': '#urlstring'
+          }
+        ]
+      '9':
+        'patterns':[
+          {
+            'include': '#urlstring'
+          }
+        ]
+  'urlname':
+    'comment': 'an URL can be a (valid) URL string or an IP address'
+    'patterns': [
+      {
+        'include': '#urlstring'
+      }
+      {
+        'include': 'ipadress'
+      }
+    ]
+  'urlstring':
+    'comment': 'see grammar rule URLName in OXPath'
+    'match': '[a-zA-Z][a-zA-Z0-9$\\-_@\\.&\\+=!\\*"\'\\(\\),%]*'
+    'name' : 'entity.name.other.url.oxpath'
+  'ipadress':
+    'comment': 'see grammar rule URLName in OXPath'
+    'match': '([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})'
+    'name' : 'constant.numeric.ip.oxpath'
+  'number':
+    'comment' : 'integers and decimals'
+    'name': 'constant.numeric.oxpath'
+    'patterns': [
+      {
+        'include': '#decimal'
+      }
+      {
+        'include': '#integer'
+      }
+    ]
+  'decimal':
+    'comment': 'decimal numbers'
+    'match': '\\b([0-9]+\\.([0-9]+)?)|(\\.[0-9]+)\\b'
+    'name': 'constant.numeric.decimal.oxpath'
+  'integer':
+    'comment': 'integer numbers'
+    'match': '\\b[0-9]+\\b'
+    'name': 'constant.numeric.integer.oxpath'
+  'actionPred':
+    'match': '\\[(((wait)(=)(.+?))|(noback))(,(\\1))*\\]'
+    'name': 'storage.type.function.oxpath'
+    'captures':
+      '3':
+        'storage.type.function.oxpath'
+      '4':
+        'punctuation.oxpath'
+      '5':
+        'patterns': [
+          {
+            'include': '#number'
+          }
+        ]
+      '6':
+        'storage.type.function.oxpath'
+  'XPathFunctionCall':
+    'comment': '''
+        XPath function calls or user function calls - see grammar rules
+        XPathFunctionCallName and XPathUserFunctionCallName
+      '''
+    'begin':'''(?x)
+        (position|last|count|id|local-name|namespace-uri|name|string|concat
+        |starts-with|contains|substring-before|substring-after|string-length
+        |normalize-space|translate|boolean|not|true|false|lang|number|sum|floor
+        |ceiling|round|opex:minus|opex:plus|substring-before-reverse
+        |substring-after-reverse|substring-reverse|replace|string-join
+        |current-url|page-content|screenshot|save-page|now|urify|jaro-wrinkler
+        |qualify-url|dom-property|select-text|innerhtml|outerhtml|to-xml
+        |is-visible|is-invisible)       # function names
+        (?:\\s|\\t|\\n)*                # optional amount of whitespace
+        (\\()                           # opening parenthesis
+      '''
+    'beginCaptures':
+      '1':
+        'name': 'entity.name.function.oxpath'
+      '2':
+        'name': 'punctuation.definition.parameters.begin.oxpath'
+    'end': '(\\))'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.parameters.end.oxpath'
+    'patterns':[
+      {
+        'include': '#XPathFunctionCall'
+      }
+      {
+        'include': '$self'
+      }
+    ]
+  'OXPathExtractionName':
+    'comment': 'name of an extraction marker'
+    'match': '([^>]+)(:[^>]+)?'
+    'name': 'constant.character.oxpath'
+    'captures':
+      '1':
+        'patterns':[
+          {
+            'include': '#NCName'
+          }
+        ]
+      '3':
+        'patterns':[
+          {
+            'include': '#NCName'
+          }
+        ]
+  'OXPathExtractionValue':
+    'comment': 'value of an OXPath extraction expression'
+    'name': 'entity.other.extraction.value.oxpath'
+    'patterns':[
+      {
+        #:<tag="test">
+        'include': '#string'
+      }
+      {
+        #:<tag=123>
+        'include': '#number'
+      }
+      {
+        #:<tag=string(.)>
+        'include': '#XPathFunctionCall'
+      }
+      {
+        #:<tag=(.)>
+        'begin': '\\('
+        'end': '\\)'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  'NCName':
+    'match': '([A-Za-z_])([A-Za-z_]|\\-|[0-9])*'
+    'name': 'entity.other.nc-name.oxpath'
+  'doublequotedString':
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.oxpath'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.oxpath'
+    'name': 'string.quoted.double.oxpath'
+  'singlequotedString':
+    'begin': '\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.oxpath'
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.oxpath'
+    'name': 'string.quoted.single.xquery'
+  'string':
+    'patterns': [
+      {
+        'include': '#doublequotedString'
+      }
+      {
+        'include': '#singlequotedString'
+      }
+    ]
+  'at':
+    'match': '@'
+    'name': 'constant.oxpath'
+  'questionMark':
+    'match': '\\?'
+    'name': 'constant.oxpath'
+  'doubleslash':
+    'match': '\\/\\/'
+    'name': 'constant.oxpath'
+  'slash':
+    'match': '\\/'
+    'name': 'constant.oxpath'
+  'asterisk':
+    'match': '\\*'
+    'name': 'constant.oxpath'
+  'and':
+    'match': '\\b(and)\\b'
+    'name': 'constant.oxpath'
+  'or':
+    'match': '\\b(or)\\b'
+    'name': 'constant.oxpath'
+  'equality':
+    'match': '(=|!=|~=|#=)'
+    'name': 'constant.oxpath'
+  'relation':
+    'match': '(>|<|>=|<=)'
+    'name': 'constant.oxpath'
+  'plus':
+    'match': '(\\+)'
+    'name': 'constant.oxpath'
+  'minus':
+    'match': '(-)'
+    'name': 'constant.oxpath'
+  'mult':
+    'match': '(\\*|mod|div)'
+    'name': 'constant.oxpath'
+  'bar':
+    'match': '(\\|)'
+    'name': 'constant.oxpath'
