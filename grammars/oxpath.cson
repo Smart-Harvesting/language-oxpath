@@ -67,27 +67,27 @@
     {
       #'disabled': '1'
       'comment': 'extraction marker'
-      'match': '(:<)(.+?)((=)(.+))?(>)'
-      'captures':
-        '1':
+      'begin': ':<'
+      'beginCaptures':
+        '0':
           'name': 'punctuation.definition.extraction.begin.oxpath'
-        '2':
-          'patterns':[
-            {
-              'include': '#OXPathExtractionName'
-            }
-          ]
-        '4':
-          'name': 'punctuation.oxpath'
-        '5':
-          'patterns':[
-            {
-              'include': '#OXPathExtractionValue'
-            }
-          ]
-        '6':
+      'end': '>'
+      'endCaptures':
+        '0':
           'name': 'punctuation.definition.extraction.end.oxpath'
-      'name': 'punctuation.definition.extraction.oxpath'
+      'patterns':[
+          {
+            'include': '$self'
+          }
+          {
+            'include': '#OXPathExtractionName'
+          }
+          {
+            'match' : '='
+            'name': 'punctuation.oxpath'
+          }
+        ]
+      'contentName': 'punctuation.definition.extraction.oxpath'
     }
     {
       #'disabled': '1'
@@ -375,7 +375,7 @@
     ]
   'OXPathExtractionName':
     'comment': 'name of an extraction marker'
-    'match': '([^>]+)(:[^>]+)?'
+    'match': '([^>=]+)(:[^>=]+)?'
     'name': 'constant.character.oxpath'
     'captures':
       '1':
