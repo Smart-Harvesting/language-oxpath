@@ -54,7 +54,7 @@
       'endCaptures':
         '0':
           'name': 'punctuation.definition.action.end.oxpath'
-      'name': 'punctuation.definition.action.oxpath'
+      'contentName': 'punctuation.definition.action.oxpath'
       'patterns':[
         {
           'include' : '#actions'
@@ -126,7 +126,7 @@
       'endCaptures':
         '0':
           'name': 'punctuation.definition.parexpression.end.oxpath'
-      'name': 'oxpath'
+      'contentName': 'oxpath'
       'patterns':[
         {
           'include' : '#string'
@@ -415,6 +415,7 @@
             'include': '$self'
           }
         ]
+        'contentName': 'entity.other.extraction.value.oxpath'
       }
     ]
   'NCName':
@@ -429,7 +430,7 @@
     'endCaptures':
       '0':
         'name': 'punctuation.definition.string.end.oxpath'
-    'name': 'string.quoted.double.oxpath'
+    'contentName': 'string.quoted.double.oxpath'
   'singlequotedString':
     'begin': '\''
     'beginCaptures':
@@ -439,7 +440,7 @@
     'endCaptures':
       '0':
         'name': 'punctuation.definition.string.end.oxpath'
-    'name': 'string.quoted.single.xquery'
+    'contentName': 'string.quoted.single.xquery'
   'string':
     'patterns': [
       {
