@@ -7,7 +7,7 @@ Syntax highlighting for [OXPath](http://www.oxpath.org/) language in Atom editor
 
 Syntax coloring will be automatically enabled on files with a matching extension (i.e. `.oxp` or `.oxt`).
 
-![sample of language-oxpath package](https://github.com/neumannm/language-oxpath/blob/master/img/screenshot.png?raw=true "sample of language-oxpath package")
+![sample of language-oxpath package](https://github.com/Smart-Harvesting/language-oxpath/blob/master/img/screenshot.png?raw=true "sample of language-oxpath package")
 
 ------------------------
 
