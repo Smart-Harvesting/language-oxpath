@@ -8,10 +8,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/irgroup/language-oxpath.git"
+    "url": "https://github.com/Smart-Harvesting/language-oxpath.git"
   },
   "bugs": {
-    "url": "https://github.com/irgroup/language-oxpath/issues"
+    "url": "https://github.com/Smart-Harvesting/language-oxpath/issues"
   },
   "license": "GNU GPL 3.0"
 }
